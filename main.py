@@ -48,7 +48,22 @@ def processKroneArticle(urlToArticle):
 
     #Extract main section
     main_section = articlePage.find(class_=["kmm-article-box"])
-    
+
+    #Date of article
+    date = main_section.find(class_=["date"]).text
+
+    #Number of comments to this article
+    number_of_comments = main_section.find(class_=["stb__comment-count"]).text
+
+    view_offer = main_section.find(class_=["view-offer"])
+    is_premium = False
+    if (view_offer):
+        is_premium = True
+
+    printCol("purple", False, " -- " + "Date: ", date)
+    printCol("purple", False, " -- " + "Number of comments: ", number_of_comments)
+    printCol("purple", False, " -- " + "Is premium: ", is_premium)
+
 def checkForNewKroneArticles():
     # Create a MechanicalSoup browser object
     
